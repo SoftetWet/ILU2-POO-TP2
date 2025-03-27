@@ -1,16 +1,8 @@
 package histoire;
 
-import controleur.ControlAcheterProduit;
-import controleur.ControlAfficherMarche;
 import controleur.ControlAfficherVillage;
-import controleur.ControlEmmenager;
-import controleur.ControlLibererEtal;
-import controleur.ControlPrendreEtal;
-import controleur.ControlTrouverEtalVendeur;
-import controleur.ControlVerifierIdentite;
 import personnages.Chef;
 import personnages.Gaulois;
-import villagegaulois.Etal;
 import villagegaulois.Village;
 
 public class TestControleursDesCas {

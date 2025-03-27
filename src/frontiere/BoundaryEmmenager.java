@@ -23,14 +23,13 @@ public class BoundaryEmmenager {
 				choixUtilisateur = Clavier.entrerEntier(question.toString());
 				switch (choixUtilisateur) {
 				case 1:
-					emmenagerDruide(nomVisiteur);
+					this.emmenagerDruide(nomVisiteur);
 					break;
 
 				case 2:
-					System.out.println("Bienvenue villageois " + nomVisiteur);
-					int force = Clavier.entrerEntier("Quelle est votre Force ? \n");
-					controlEmmenager.ajouterGaulois(nomVisiteur, force);
+					this.emmenagerGaulois(nomVisiteur);
 					break;
+
 				default:
 					System.out
 							.println("Vous devez choisir le chiffre 1 ou 2 !");
@@ -39,21 +38,45 @@ public class BoundaryEmmenager {
 			} while (choixUtilisateur != 1 && choixUtilisateur != 2);
 		}
 	}
+	
+	//	
 
 	private void emmenagerDruide(String nomVisiteur) {
-		System.out.println("Bienvenue villageois " + nomVisiteur);
+		this.souhaiterBienvenue(nomVisiteur);
 		
-		int force = Clavier.entrerEntier("Quelle est votre Force ? \n");
-		int effetPotionMinimum = 1;
-		int effetPotionMaximum = -1;
-		while(effetPotionMaximum < effetPotionMinimum) {
-			effetPotionMinimum = Clavier.entrerEntier("Quelle est la force de la potion la plus faible que vous produisez ? \n");
-			effetPotionMaximum = Clavier.entrerEntier("Quelle est la force de la potion la plus forte que vous produisez ? \n");
-			if(effetPotionMaximum < effetPotionMinimum) {
-				System.out.println("Attention Druide, vous vous être trompé entre le minimum et le maximum");
-			}
-		}
+		int force = this.demanderForce();
+		int effetPotionMinimum = this.demanderEffetPotionMinimum();
+		int effetPotionMaximum = this.demanderEffetPotionMaximum();
 		
 		this.controlEmmenager.ajouterDruide(nomVisiteur, force, effetPotionMinimum, effetPotionMaximum);
 	}
+	
+	private void emmenagerGaulois(String nomVisiteur) {		
+		this.souhaiterBienvenue(nomVisiteur);
+		
+		int force = this.demanderForce();
+		
+		this.controlEmmenager.ajouterGaulois(nomVisiteur, force);
+	}
+	
+	//
+	
+	private void souhaiterBienvenue(String nom) {
+		System.out.println("Bienvenue villageois " + nom + ".");
+	}
+	
+	//
+	
+	private int demanderForce() {
+		return Clavier.entrerEntier("Quelle est votre force ? : ");
+	}
+	
+	private int demanderEffetPotionMinimum() {
+		return Clavier.entrerEntier("Quelle est la force de potion la plus faible que vous produisez ?");
+	}
+	
+	private int demanderEffetPotionMaximum() {
+		return Clavier.entrerEntier("Quelle est la force de potion la plus forte que vous produisez ?");
+	}
+	
 }

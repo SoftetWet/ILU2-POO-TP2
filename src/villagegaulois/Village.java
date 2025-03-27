@@ -1,5 +1,6 @@
 package villagegaulois;
 
+//TP2
 import personnages.Chef;
 import personnages.Druide;
 import personnages.Gaulois;
@@ -34,8 +35,8 @@ public class Village {
 
 	public Gaulois trouverHabitant(String nomGaulois) {
 		Gaulois gaulois = null;
-		if (nomGaulois.equals(chef.getNom())) {
-			gaulois = chef;
+		if (this.chef != null && nomGaulois != null && nomGaulois.equals(this.chef.getNom())) {
+			gaulois = this.chef;
 		} else {
 			for (int i = 0; i < nbVillageois; i++) {
 				Gaulois habitant = villageois[i];
@@ -208,7 +209,8 @@ public class Village {
 		private String[] donnerEtat() {
 			int tailleTableau = getNbEtalsOccupe() * 3;
 			String[] donnees = new String[tailleTableau];
-			for (int i = 0, j = 0; i < etals.length; i++) {
+			int j = 0;
+			for (int i = 0; i < etals.length; i++) {
 				Etal etal = etals[i];
 				if (etal.isEtalOccupe()) {
 					Gaulois vendeur = etal.getVendeur();
